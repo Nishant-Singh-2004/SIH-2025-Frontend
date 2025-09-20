@@ -4,22 +4,20 @@ import HomePage from "./routes/home";
 import TimetablePage from "./routes/timetablepageroute";
 import TakeAttendancePage from "./routes/takeAttendance";
 import ScanQrPage from "./routes/scanQR";
+import StudentsPage from "./routes/students";
+import TeachersPage from "./routes/teachers";
 
 export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* The main dashboard page */}
         <Route path="/" element={<HomePage />} />
-        
-        {/* The timetable page, rendered inside the main layout */}
         <Route path="/timetable" element={<HomePage content={<TimetablePage />} />} /> 
-
-        {/* Take Attendance page (teacher) */}
         <Route path="/attendance" element={<HomePage content={<TakeAttendancePage />} />} />
-
-        {/* Scan QR page (student) */}
         <Route path="/scan" element={<HomePage content={<ScanQrPage />} />} />
+        <Route path="/students" element={<HomePage content={<StudentsPage />} />} />
+        <Route path="/teachers" element={<HomePage content={<TeachersPage />} />} />
+        <Route path="/courses" element={<HomePage />}/>
       </Routes>
     </BrowserRouter>
   );

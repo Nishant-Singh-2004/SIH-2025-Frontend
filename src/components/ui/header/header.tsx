@@ -5,21 +5,6 @@ import { useSidebarStore } from '../../../store/sidebarstore';
 import { useAuthStore } from '../../../store/authstore';
 import { ProfileDropdown } from './profiledropdwon';
 
-// Custom hook to detect clicks outside a component
-// const useClickOutside = (ref: React.RefObject<HTMLDivElement | null>, callback: () => void) => {
-//     useEffect(() => {
-//         const handleClickOutside = (event: MouseEvent) => {
-//             if (ref.current && !ref.current.contains(event.target as Node)) {
-//                 callback();
-//             }
-//         };
-//         document.addEventListener("mousedown", handleClickOutside);
-//         return () => {
-//             document.removeEventListener("mousedown", handleClickOutside);
-//         };
-//     }, [ref, callback]);
-// };
-
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export const DashboardHeader = () => {

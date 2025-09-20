@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useProfileMenuStore } from '../../../store/profilemenustore';
+// Custom hook to detect clicks outside a component
+import { useEffect } from 'react';
+const useClickOutside = (ref: React.RefObject<HTMLDivElement | null>, callback: () => void) => {
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (ref.current && !ref.current.contains(event.target as Node)) {
+                callback();
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref, callback]);
+};
 import { LogoutIcon, ProfileIcon } from '../icons';
 
 const DropdownItem = ({ icon, label, isDanger = false }: { icon: React.ReactNode; label: string; isDanger?: boolean }) => {
@@ -16,12 +31,15 @@ const DropdownItem = ({ icon, label, isDanger = false }: { icon: React.ReactNode
 };
 
 export const ProfileDropdown = () => {
-    const { isOpen } = useProfileMenuStore();
+    const { isOpen, close } = useProfileMenuStore();
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+    useClickOutside(dropdownRef, close);
 
     return (
         <AnimatePresence>
             {isOpen && (
                 <motion.div
+                    ref={dropdownRef}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
