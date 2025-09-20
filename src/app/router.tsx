@@ -6,6 +6,7 @@ import TakeAttendancePage from "./routes/takeAttendance";
 import ScanQrPage from "./routes/scanQR";
 import StudentsPage from "./routes/students";
 import TeachersPage from "./routes/teachers";
+import CoursesPage from "./routes/coursePage";
 
 export const AppRouter = () => {
   return (
@@ -17,7 +18,7 @@ export const AppRouter = () => {
         <Route path="/scan" element={<HomePage content={<ScanQrPage />} />} />
         <Route path="/students" element={<HomePage content={<StudentsPage />} />} />
         <Route path="/teachers" element={<HomePage content={<TeachersPage />} />} />
-        <Route path="/courses" element={<HomePage />}/>
+        <Route path="/courses" element={<HomePage content={<CoursesPage />} />} />
       </Routes>
     </BrowserRouter>
   );
